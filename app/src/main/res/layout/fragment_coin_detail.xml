@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+
+                    Този XML е за ДЕТАЙЛНО презентиране !!!
+
+                    Шаблон, по който детайлно ще се показва
+                    дадена криптовалута. Този Фрагмент ще
+                    replace-не съществуващия такъв във FrameLayout-а
+                    на activity_main.xml, и ще показва
+                    допълнителна информация.
+
+
+
+
+ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="260dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/d_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            tools:text="1" />
+
+        <TextView
+            android:id="@+id/d_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            tools:text="BitCoin" />
+
+        <TextView
+            android:id="@+id/d_symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            tools:text="(BTC)" />
+
+        <TextView
+            android:id="@+id/d_price_usd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            tools:text="Price USD:" />
+
+        <TextView
+            android:id="@+id/d_price_btc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            tools:text="Price BTC" />
+
+        <TextView
+            android:id="@+id/d_market_cap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            tools:text="Market Cap" />
+
+        <TextView
+            android:id="@+id/d_available_supply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            tools:text="Available Supply" />
+
+        <TextView
+            android:id="@+id/d_total_supply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            tools:text="Total Supply" />
+
+        <TextView
+            android:id="@+id/d_percent_change_1h"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            tools:text="Percent Change 1h" />
+
+        <TextView
+            android:id="@+id/d_percent_change_24h"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            tools:text="Percent Change 24h" />
+
+        <TextView
+            android:id="@+id/d_percent_change_7d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            tools:text="Percent Change 7d" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/d_pin_icon"
+            android:layout_weight="1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_gravity="center"
+            android:focusable="true"
+            android:clickable="true"
+            android:contentDescription="PinIcon"
+            />
+
+        <ImageView
+            android:id="@+id/d_coin_icon"
+            android:layout_weight="1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_gravity="center"
+            android:focusable="true"
+            android:clickable="true"
+            android:contentDescription="CoinIcon"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

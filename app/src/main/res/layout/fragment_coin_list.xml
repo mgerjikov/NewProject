@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+
+                   * Това RecyclerView ще е Фрагментът, който ще
+                    отиде в MainActivity и по-точно във FrameLayout-а на
+                    activity_main.xml.
+
+                   * Също така, това RecyclerView ще бъде населено с редове,
+                    като шаблонът е дефиниран във fragment_coin_list_item.xml
+
+
+
+ -->
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/recycler_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"/>
