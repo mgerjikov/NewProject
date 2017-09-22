@@ -77,7 +77,7 @@ public class CoinClicked {
         // the ID must be declared in XML, used to avoid
         // replacing the ItemClickSupport without removing
         // the old one from the RecyclerView
-        mRecyclerView.setTag(R.id.recycler_view, this);
+        mRecyclerView.setTag(R.id.recyclerView, this);
         mRecyclerView.addOnChildAttachStateChangeListener(mChildAttachListener);
     }
 
@@ -86,7 +86,7 @@ public class CoinClicked {
     public static CoinClicked addTo(RecyclerView view) {
         // if there's already an ItemClickSupport attached
         // to this RecyclerView do not replace it, use it
-        CoinClicked support = (CoinClicked) view.getTag(R.id.recycler_view);
+        CoinClicked support = (CoinClicked) view.getTag(R.id.recyclerView);
         if (support == null) {
             support = new CoinClicked(view);
         }
@@ -96,7 +96,7 @@ public class CoinClicked {
     // ****************************  ПРЕМАХВАНЕ  ****************************
 
     public static CoinClicked removeFrom(RecyclerView view) {
-        CoinClicked support = (CoinClicked) view.getTag(R.id.recycler_view);
+        CoinClicked support = (CoinClicked) view.getTag(R.id.recyclerView);
         if (support != null) {
             support.detach(view);
         }
@@ -112,7 +112,7 @@ public class CoinClicked {
 
     private void detach(RecyclerView view) {
         view.removeOnChildAttachStateChangeListener(mChildAttachListener);
-        view.setTag(R.id.recycler_view, null);
+        view.setTag(R.id.recyclerView, null);
     }
 
 

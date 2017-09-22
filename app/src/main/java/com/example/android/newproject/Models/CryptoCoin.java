@@ -17,12 +17,13 @@ public class CryptoCoin {
 
 
 
-    public CryptoCoin(String rank, Drawable icon, String name, String price, String percentChange) {
+    public CryptoCoin(String rank, Drawable icon, String name, String price, String percentChange, String id) {
         cRank = rank;
         cIcon = icon;
         cName = name;
         cPrice = price;
         cPercentChange = percentChange;
+        cId = id;
 
     }
 

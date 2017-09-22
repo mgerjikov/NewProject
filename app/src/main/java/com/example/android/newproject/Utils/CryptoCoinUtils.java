@@ -31,6 +31,7 @@ public class CryptoCoinUtils {
 
     private static final String RANK = "rank";
     private static final String NAME = "name";
+    private static final String ID = "id";
     private static final String SYMBOL = "symbol";
     private static final String PRICE_USD = "price_usd";
     private static final String PRICE_EUR = "price_eur";
@@ -76,6 +77,7 @@ public class CryptoCoinUtils {
 
             String rank;
             String name;
+            String id;
             String symbol;
             String price;
             String percentChange;
@@ -90,8 +92,9 @@ public class CryptoCoinUtils {
                 symbol = jObj.getString(SYMBOL);
                 price = jObj.getString(PRICE_USD);
                 percentChange = jObj.getString(PERCENT_CHANGE_24h);
+                id = jObj.getString(ID);
 
-                CryptoCoin coinItem = new CryptoCoin(rank,null,name,price,percentChange);
+                CryptoCoin coinItem = new CryptoCoin(rank,null,name,price,percentChange, id);
 
                 coinList.add(coinItem);
             }

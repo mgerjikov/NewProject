@@ -5,5 +5,5 @@ package com.example.android.newproject.Interface;
  */
 
 public interface Communication {
-    void Communication (String s);
+    void onCommunicationClick(String s);
 }

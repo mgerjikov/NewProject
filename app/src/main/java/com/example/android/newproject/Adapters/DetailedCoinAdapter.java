@@ -23,15 +23,28 @@ public class DetailedCoinAdapter extends RecyclerView.Adapter<DetailedCoinAdapte
 
     private LayoutInflater mLayoutInflater;
     private List<DetailedCryptoCoin> detailedCryptoCoinList;
+    private Context mContext;
 
     public DetailedCoinAdapter(Context context, List<DetailedCryptoCoin> detailedCryptoCoins) {
-        mLayoutInflater = LayoutInflater.from(context);
+        mContext = context;
         detailedCryptoCoinList = detailedCryptoCoins;
     }
 
     @Override
     public DetailedCoinAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(mLayoutInflater.inflate(R.layout.fragment_coin_detail,parent,false));
+//        return new ViewHolder(mLayoutInflater.inflate(R.layout.fragment_coin_detail,parent,false));
+
+        Context context = parent.getContext();
+
+        mLayoutInflater = LayoutInflater.from(context);
+
+        View view = mLayoutInflater.inflate(R.layout.fragment_coin_detail, parent, false);
+
+        ViewHolder viewholder = new ViewHolder(mContext, view);
+
+        return viewholder;
+
+
     }
 
     @Override
@@ -86,6 +99,8 @@ public class DetailedCoinAdapter extends RecyclerView.Adapter<DetailedCoinAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+
+
         // Views
         private TextView dRank;
         private TextView dName;
@@ -102,23 +117,24 @@ public class DetailedCoinAdapter extends RecyclerView.Adapter<DetailedCoinAdapte
         private ImageView dCoinIcon;
 
 
-        public ViewHolder(View inflate) {
+        public ViewHolder(Context context ,View inflate) {
             super(inflate);
+            mContext = context;
 
-            dRank = (TextView) itemView.findViewById(R.id.d_rank);
-            dName = (TextView) itemView.findViewById(R.id.d_name);
-            dSymbol = (TextView) itemView.findViewById(R.id.d_symbol);
-            dPriceUSD = (TextView) itemView.findViewById(R.id.d_price_usd);
-            dPriceBTC = (TextView) itemView.findViewById(R.id.d_price_btc);
-            dMarketCap = (TextView) itemView.findViewById(R.id.d_market_cap);
-            dAvailableSupply = (TextView) itemView.findViewById(R.id.d_available_supply);
-            dTotalSupply = (TextView) itemView.findViewById(R.id.d_total_supply);
-            dChange1h = (TextView) itemView.findViewById(R.id.d_percent_change_1h);
-            dChange24h = (TextView) itemView.findViewById(R.id.d_percent_change_24h);
-            dChange7d = (TextView) itemView.findViewById(R.id.d_percent_change_7d);
+            dRank = (TextView) inflate.findViewById(R.id.d_rank);
+            dName = (TextView) inflate.findViewById(R.id.d_name);
+            dSymbol = (TextView) inflate.findViewById(R.id.d_symbol);
+            dPriceUSD = (TextView) inflate.findViewById(R.id.d_price_usd);
+            dPriceBTC = (TextView) inflate.findViewById(R.id.d_price_btc);
+            dMarketCap = (TextView) inflate.findViewById(R.id.d_market_cap);
+            dAvailableSupply = (TextView) inflate.findViewById(R.id.d_available_supply);
+            dTotalSupply = (TextView) inflate.findViewById(R.id.d_total_supply);
+            dChange1h = (TextView) inflate.findViewById(R.id.d_percent_change_1h);
+            dChange24h = (TextView) inflate.findViewById(R.id.d_percent_change_24h);
+            dChange7d = (TextView) inflate.findViewById(R.id.d_percent_change_7d);
 
-            dPinIcon = (ImageView) itemView.findViewById(R.id.d_pin_icon);
-            dCoinIcon = (ImageView) itemView.findViewById(R.id.d_coin_icon);
+            dPinIcon = (ImageView) inflate.findViewById(R.id.d_pin_icon);
+            dCoinIcon = (ImageView) inflate.findViewById(R.id.d_coin_icon);
         }
     }
 }

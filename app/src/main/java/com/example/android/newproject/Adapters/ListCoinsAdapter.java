@@ -8,8 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.android.newproject.Interface.Communication;
+import com.example.android.newproject.Fragments.ListCoinsFragment.Communication;
 import com.example.android.newproject.Models.CryptoCoin;
 import com.example.android.newproject.R;
 
@@ -24,22 +25,32 @@ public class ListCoinsAdapter extends RecyclerView.Adapter<ListCoinsAdapter.View
 
     private LayoutInflater mLayoutInflater;
     private List<CryptoCoin> coinList;
-    private Communication communication;
-
+    private Context mContext;
     private String id;
 
+    private Communication comFromFragment;
+
     public ListCoinsAdapter(Context context, List<CryptoCoin> list) {
-        mLayoutInflater = LayoutInflater.from(context);
+        mContext = context;
         coinList = list;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(mLayoutInflater.inflate(R.layout.fragment_coin_list_item, parent, false));
+    public ListCoinsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//        return new ViewHolder(mLayoutInflater.inflate(R.layout.fragment_coin_list_item, parent, false));
+        Context context = parent.getContext();
+        mLayoutInflater = LayoutInflater.from(context);
+
+        View view = mLayoutInflater.inflate(R.layout.fragment_coin_list_item, parent, false);
+
+        ViewHolder viewHolder = new ViewHolder(mContext, view);
+
+        return viewHolder;
     }
 
+
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder( ListCoinsAdapter.ViewHolder holder, int position) {
         CryptoCoin cryptoCoin = coinList.get(position);
 
         TextView coinRank = holder.mRank;
@@ -49,7 +60,7 @@ public class ListCoinsAdapter extends RecyclerView.Adapter<ListCoinsAdapter.View
         ImageView coinIcon = holder.mIcon;
 
 
-        id = cryptoCoin.getcId();
+//        id = cryptoCoin.getcId();
 
         coinRank.setText(cryptoCoin.getcRank());
         coinName.setText(cryptoCoin.getcName());
@@ -57,18 +68,10 @@ public class ListCoinsAdapter extends RecyclerView.Adapter<ListCoinsAdapter.View
         percentChange.setText(cryptoCoin.getcPercentChange());
         coinIcon.setImageDrawable(cryptoCoin.getcIcon());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                communication.Communication(id);
-                Log.v("ListCoinAdapt Listener", id);
-            }
-        });
-
     }
 
-    public void setSelectedInterface(Communication interfaceCommunication){
-        communication = interfaceCommunication;
+    public void setCommunicationListener(Communication communicationListener){
+        comFromFragment = communicationListener;
     }
 
     @Override
@@ -87,23 +90,58 @@ public class ListCoinsAdapter extends RecyclerView.Adapter<ListCoinsAdapter.View
         notifyDataSetChanged();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+        private Context theContext;
 
         // Views
-        private TextView mRank;
-        private ImageView mIcon;
-        private TextView mName;
-        private TextView mPrice;
-        private TextView mPercentChange;
+        public TextView mRank;
+        public ImageView mIcon;
+        public TextView mName;
+        public TextView mPrice;
+        public TextView mPercentChange;
 
-        public ViewHolder(View inflate) {
-            super(inflate);
+        public ViewHolder(Context context, View view) {
+            super(view);
+            this.theContext = context;
 
-            mRank = (TextView) itemView.findViewById(R.id.rankTextView);
-            mIcon = (ImageView) itemView.findViewById(R.id.iconImageView);
-            mName = (TextView) itemView.findViewById(R.id.nameTextView);
-            mPrice = (TextView) itemView.findViewById(R.id.priceTextView);
-            mPercentChange = (TextView) itemView.findViewById(R.id.percentChangeTextView);
+            view.setOnClickListener(this);
+
+            mRank = (TextView) view.findViewById(R.id.rankTextView);
+            mIcon = (ImageView) view.findViewById(R.id.iconImageView);
+            mName = (TextView) view.findViewById(R.id.nameTextView);
+            mPrice = (TextView) view.findViewById(R.id.priceTextView);
+            mPercentChange = (TextView) view.findViewById(R.id.percentChangeTextView);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            CryptoCoin coin = coinList.get(position);
+
+            id = coin.getcId();
+
+            comFromFragment.onCommunicationClick(id);
+
+
+//            DetailCoinFragment fragment = DetailCoinFragment.newInstance(id);
+
+
+
+//            Bundle bundle = new Bundle();
+//            bundle.putString("id", id);
+//            fragment.setArguments(bundle);
+
+//            Uri uri = Uri.parse(id);
+//            Intent webIntent = new Intent(Intent.ACTION_VIEW, uri);
+//
+//            theContext.startActivity(webIntent);
+
+
+            Log.v("Adapter",id);
+            Toast.makeText(theContext,id,Toast.LENGTH_SHORT).show();
+
         }
     }
 
